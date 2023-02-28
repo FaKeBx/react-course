@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First React</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+</head>
+
+<body>
+
+  <div id="app">App</div>
+
+  <script type="text/babel">
+
+    const Compras = () => {
+      const [contador, setContador] = React.useState(0);
+
+      function comprar() {
+        return setContador(contador + 1);
+      }
+
+      return (
+        <div>
+          <button onClick={comprar}>Comprar</button>
+          <p>Total: {contador}</p>
+          <p>Preço: {contador * 200}</p>
+        </div>
+      )
+    }
+
+    const Title = () => <h1>My first React App</h1>
+
+    const Button = () => {
+      function handleClick(event) {
+        console.log(event.target.innerText)
+      }
+
+      return <button onClick={handleClick}>Let's code!</button>
+    };
+
+    const App = () =>
+      <div>
+        <Title />
+        Hello World!!!. Só pra não dar zika hehehe
+        <div>
+          <Button />
+          <Compras />
+        </div>
+      </div>;
+
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+
+</body>
+
+</html>
