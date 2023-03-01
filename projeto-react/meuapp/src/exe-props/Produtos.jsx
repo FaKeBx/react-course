@@ -12,7 +12,7 @@ const produtos = [
 const Produtos = () => {
   return (
     <>
-      <Title cor="purple" texto="Produtos" />
+      <Title texto="Produtos" />
       {produtos.map((produto) => {
         return <Produto key={produto} {...produto} />;
       })}

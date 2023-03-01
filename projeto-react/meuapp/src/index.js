@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./Header";
-import Home from "./Home";
-import Produtos from "./Produtos";
+import Header from "./exe-props/Header";
+import Home from "./exe-props/Home";
+import Produtos from "./exe-props/Produtos";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
