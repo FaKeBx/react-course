@@ -1,5 +1,5 @@
 import React from "react";
-const App2 = () => {
+const Exercicio2 = () => {
   // Organize os produtos como mostrado no vídeo
   // Mostre apenas produtos que forem mais caros que R$ 1500
   const produtos = [
@@ -50,4 +50,4 @@ const App2 = () => {
     </section>
   );
 };
-export default App2;
+export default Exercicio2;
