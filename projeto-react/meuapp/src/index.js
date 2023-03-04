@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Home from "./exe-usestate/Home";
+import Home from "./exe-useeffect/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
