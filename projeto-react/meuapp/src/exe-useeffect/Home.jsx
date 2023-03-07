@@ -8,32 +8,40 @@ import Produto from "./Produto";
 // Quando o usuário entrar no site, se existe um produto no localStorage, faça o fetch do mesmo
 
 function Home() {
-  const [dados, setDados] = React.useState(null);
+  const [preference, setPreference] = React.useState(null);
 
+  // criei uma constante para que eu possa verificar se o
+  // localStorage esta vazio ou nao, caso nao esteja, ele
+  // vai alterar o estado de preference e mudar o valor dentro
+  // do h1. Lmebrando que esse efeito so ocorre uma vez quando
+  // o site e aberto
   React.useEffect(() => {
-    if (dados == null) {
-      fetch(`https://ranekapi.origamid.dev/json/api/produto/${localStorage.getItem("Produto")}`)
-        .then((response) => response.json())
-        .then((json) => setDados(json));
-    }
+    const localPreference = localStorage.getItem("produto");
+    if (localPreference !== null) setPreference(localPreference);
   }, []);
 
-  async function pushData(event) {
-    await fetch(`https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`)
-      .then((response) => response.json())
-      .then((json) => setDados(json));
+  // sempre que preference mudar o useEffect vai salvar o
+  // valor do texto de dentro do button e colocar esse valor
+  // no localStorage
+  React.useEffect(() => {
+    if (preference !== null) localStorage.setItem("produto", preference);
+  }, [preference]);
 
-    localStorage.setItem("Produto", event.target.innerText);
+  // sempre que o usuario clicar em qualquer um dos buttons,
+  // a funcao vai pegar o texto de dentro do button e mudar o
+  // estado da preference. Alterando o texto do h1
+  function pushPreference({ target }) {
+    setPreference(target.innerText);
   }
 
   return (
     <>
-      <h1>Preferência: {dados && dados.id}</h1>
-      <button onClick={pushData}>notebook</button>
-      <button onClick={pushData} style={{ marginLeft: "20px" }}>
-        smartphone
+      <h1>Preferência: {preference}</h1>
+      <button onClick={pushPreference} style={{ marginRight: "1rem" }}>
+        notebook
       </button>
-      {dados && <Produto dado={dados} />}
+      <button onClick={pushPreference}>smartphone</button>
+      {preference && <Produto chosenPreference={preference} />}
     </>
   );
 }
