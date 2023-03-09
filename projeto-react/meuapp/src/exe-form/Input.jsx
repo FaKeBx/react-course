@@ -63,7 +63,7 @@ const formFields = [
   },
 ];
 
-const App = () => {
+const Input = () => {
   const [form, setForm] = React.useState(
     formFields.reduce((ant, field) => {
       return { ...ant, [field.id]: "" };
@@ -106,4 +106,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Input;
