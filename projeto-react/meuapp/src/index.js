@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Checkbox from "./exe-form/Checkbox";
+import App from "./exe-form/form-challenge/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <Checkbox />
+    <App />
   </React.StrictMode>
 );
