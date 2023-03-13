@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const ProdutosContainer = styled.div`
@@ -33,10 +33,12 @@ const Produtos = ({ data }) => {
         {data &&
           data.map(({ nome, fotos, id }) => {
             return (
-              <ProdutoContainer key={id}>
-                <Img src={fotos[0].src} alt="" />
-                <TextImg>{nome}</TextImg>
-              </ProdutoContainer>
+              <Link to="produto" key={id} style={{ textDecoration: "none" }}>
+                <ProdutoContainer>
+                  <Img src={fotos[0].src} alt="" />
+                  <TextImg>{nome}</TextImg>
+                </ProdutoContainer>
+              </Link>
             );
           })}
       </ProdutosContainer>
