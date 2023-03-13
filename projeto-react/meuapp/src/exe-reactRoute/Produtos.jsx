@@ -27,23 +27,24 @@ const TextImg = styled.p`
 `;
 
 const Produtos = ({ data }) => {
-  return (
-    <>
-      <ProdutosContainer>
-        {data &&
-          data.map(({ nome, fotos, id }) => {
-            return (
-              <Link to="produto" key={id} style={{ textDecoration: "none" }}>
-                <ProdutoContainer>
-                  <Img src={fotos[0].src} alt="" />
-                  <TextImg>{nome}</TextImg>
-                </ProdutoContainer>
-              </Link>
-            );
-          })}
-      </ProdutosContainer>
-    </>
-  );
+  if (data)
+    return (
+      <>
+        <ProdutosContainer>
+          {data &&
+            data.map(({ nome, fotos, id }) => {
+              return (
+                <Link to={`produto/${id}`} key={id} style={{ textDecoration: "none" }}>
+                  <ProdutoContainer>
+                    <Img src={fotos[0].src} alt="" />
+                    <TextImg>{nome}</TextImg>
+                  </ProdutoContainer>
+                </Link>
+              );
+            })}
+        </ProdutosContainer>
+      </>
+    );
 };
 
 export default Produtos;

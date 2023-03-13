@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <>
       <Nav>
-        <Link to="produtos">
+        <Link to="/">
           <Button ativo>Produtos</Button>
         </Link>
         <Link to="contato">

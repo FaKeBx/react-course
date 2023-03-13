@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import { type } from "@testing-library/user-event/dist/type";
+import React, { useEffect, useState } from "react";
+import { json, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const ProdutoContainer = styled.div`
@@ -46,31 +48,38 @@ const Price = styled.p`
   justify-self: start;
 `;
 
-const Produto = ({ data }) => {
-  console.log("🚀 ~ file: Produto.jsx:51 ~ Produto ~ data:", data);
-  useEffect(() => {
-    fetch(`https://ranekapi.origamid.dev/json/api/produto`)
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-  }, []);
+const Produto = () => {
+  const { id } = useParams();
+  const [produto, setProduto] = useState(null);
 
-  return (
-    <>
-      {data &&
-        data.map(({ id, fotos, nome, preco, descricao }) => {
-          return (
-            <ProdutoContainer key={id}>
-              <Img src={fotos[0].src} />
-              <DescricaoContainer>
-                <Name>{nome}</Name>
-                <Price>R$ {preco}</Price>
-                <Describe>{descricao}</Describe>
-              </DescricaoContainer>
-            </ProdutoContainer>
-          );
-        })}
-    </>
-  );
+  useEffect(() => {
+    async function fetching(url) {
+      await fetch(url)
+        .then((response) => response.json())
+        .then((json) => setProduto(json));
+    }
+    fetching(`https://ranekapi.origamid.dev/json/api/produto/${id}`);
+  }, [id]);
+
+  // useEffect(() => {
+  //   fetch(`https://ranekapi.origamid.dev/json/api/produto/${id}`)
+  //     .then((response) => response.json())
+  //     .then((json) => setProduto(json));
+  // }, [id]);
+
+  if (produto !== null)
+    return (
+      <>
+        <ProdutoContainer>
+          <Img src={produto.fotos[0].src} />
+          <DescricaoContainer>
+            <Name>{produto.nome}</Name>
+            <Price>R$ {produto.preco}</Price>
+            <Describe>{produto.descricao}</Describe>
+          </DescricaoContainer>
+        </ProdutoContainer>
+      </>
+    );
 };
 
 export default Produto;

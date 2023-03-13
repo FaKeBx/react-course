@@ -30,8 +30,8 @@ const App = () => {
       <ContainerCenter>
         <Header />
         <Routes>
-          <Route path="produtos" element={<Produtos data={data} />} />
-          <Route path="produtos/:id/*" element={<Produto data={data} />} />
+          <Route path="/" element={<Produtos data={data} />} />
+          <Route path="produto/:id" element={<Produto data={data} />} />
           <Route path="contato" element={<Contato />} />
         </Routes>
       </ContainerCenter>
